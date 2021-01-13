@@ -1,3 +1,4 @@
+import datetime
 import json
 
 import folium
@@ -8,7 +9,8 @@ import pandas as pd
 
 
 def main():
-    start_date = '2021-01-03'
+    yesterday = datetime.datetime.today() - datetime.timedelta(days=1)
+    start_date = yesterday.strftime("%Y-%m-%d")
     end_date = start_date
 
     endpoint = f'https://covidtrackerapi.bsg.ox.ac.uk/api/v2/stringency/date-range/{start_date}/{end_date}'
@@ -31,7 +33,7 @@ def main():
         country = pycountry.countries.get(alpha_3=countries_with_most_deaths[i]["country_code"])
         deaths_per_country[country.name] = countries_with_most_deaths[i]["deaths"]
 
-    print('Deaths per Country\n')
+    print('Deaths per Country:\n')
 
     for country in deaths_per_country:
         print(country + ': ' + str(deaths_per_country[country]))
