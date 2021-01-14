@@ -53,7 +53,7 @@ def main():
         fill_color='YlGn',
         fill_opacity=0.7,
         line_opacity=0.2,
-        legend_name='Mortalidade Covid'
+        legend_name='Deaths'
     ).add_to(m)
 
     folium.LayerControl().add_to(m)
